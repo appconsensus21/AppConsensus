@@ -1,0 +1,29 @@
+<div class="container-login" fxLayout="row" fxLayoutAlign="center center">
+  <h1>App Consensus</h1>
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  <div *ngIf="!showSpinner" class="card bg-secondary shadow border-0" style="text-align: center;">
+    <div class="card-body px-lg-5 py-lg-5">
+      <form [formGroup]="form">
+        <h2>Iniciar sesión</h2>
+        <mat-form-field appearance="outline">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput placeholder="Correo electrónico" formControlName="username" required>
+          <mat-error>
+            Ingrese un correo electrónico válido
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <button type="submit" (click)="login()" mat-raised-button color="primary">Iniciar sesión</button>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="!showSpinner" class="row mt-3">
+    <small>¿No posees cuenta? <a routerLink="/registro">Regístrate</a></small>
+  </div>
+</div>

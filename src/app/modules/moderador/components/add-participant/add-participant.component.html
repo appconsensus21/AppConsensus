@@ -1,0 +1,74 @@
+<mat-dialog-content>
+  <mat-tab-group>
+    <mat-tab label="Subir archivo">
+      <div class="d-flex justify-content-between" style="margin-top: 3%;">
+        <div class="mr-auto p-2">
+          <p><a class="button nav_link" href="assets/formato/formato_participantes.csv" download="">Descargar plantilla csv</a></p>
+        </div>
+        <div class="ml-auto p-2">
+          <button type="button" mat-stroked-button color="accent" (click)="fileparticipantes.click()">Subir lista</button>
+          <input hidden #fileparticipantes type="file" accept=".csv" (change)="leerCsv($event)">
+        </div>
+      </div>
+      <table mat-table [dataSource]="dataSourcecsv" class="shadow-sm border-0">
+        <ng-container matColumnDef="nombres">
+          <th mat-header-cell *matHeaderCellDef> Nombres </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellidos">
+          <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+          <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="correo">
+          <th mat-header-cell *matHeaderCellDef> Correo electrónico </th>
+          <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnscsv"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnscsv;"></tr>
+      </table>
+      <mat-paginator #paginatorcsv [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons></mat-paginator>
+      <div align="center">
+        <button mat-button color="primary" mat-dialog-close>Cancelar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-raised-button color="primary" type="submit" (click)="invitar()">Agregar</button>
+      </div>
+    </mat-tab>
+    <mat-tab label="Lista">
+      <table mat-table [dataSource]="dataSource" class="shadow-sm border-0">
+        <ng-container matColumnDef="nombres">
+          <th mat-header-cell *matHeaderCellDef> Nombres </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellidos">
+          <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+          <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="correo">
+          <th mat-header-cell *matHeaderCellDef> Correo electrónico </th>
+          <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="activo">
+          <th mat-header-cell *matHeaderCellDef> Agregar </th>
+          <td mat-cell *matCellDef="let element" class="action-lin">
+            <mat-checkbox #c (click)="checkboxAgregar(!c.checked, element)"></mat-checkbox>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator #paginatorlistado [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons></mat-paginator>
+      <div align="center">
+        <button mat-button color="primary" mat-dialog-close>Cancelar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-raised-button color="primary" type="submit" (click)="invitarExistentes()">Agregar</button>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>

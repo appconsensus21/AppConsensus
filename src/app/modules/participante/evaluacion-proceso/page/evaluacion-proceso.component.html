@@ -1,0 +1,140 @@
+<div class="content" *ngIf="consenso">
+  <div class="titletop" style="margin-top: 3rem; justify-content:space-between; display: flex; flex-direction: row;">
+    <h1 slot="start">{{consenso?.nombre_consenso}}</h1>
+  </div>
+  <div class="container">
+    <div class="grid" *ngIf="!finalizado">
+      <div class="row">
+        <div class="d-flex justify-content-between" style="margin-top: 2%;">
+          <div class="mr-auto p-2">
+            <h3 class="ronda-info">
+              Ronda {{ronda}}
+            </h3>
+          </div>
+          <div class="ml-auto p-2">
+            <button [disabled]="isevaluated" mat-raised-button color="primary" (click)="calificar()">Evaluar ronda
+              {{ronda}}</button>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <h3 class="titulos-evaluacion">Información del proceso de consenso</h3>
+      <div>
+        <mat-card class="shadow-none">
+          <mat-card-content>
+            <p>{{consenso?.descripcion}}</p>
+            <div class="row">
+              <div class="col">
+                <p>Nivel de consenso actual: {{nivelconsensoronda}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>Nivel de consenso esperado: {{consenso?.nivel_consenso}}</p>
+              </div>
+              <div class="col">
+                <p>Ronda: {{ronda}}/{{consenso?.rondas}}</p>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="rondanoinicia" class="shadow-sm ">
+          <mat-card-content>
+            <div style="text-align:center;">
+              <h4>
+                La ronda {{ronda}} inicia el <br>
+                {{fechainicioronda.getDate()}}-{{fechainicioronda.getMonth()}}-{{fechainicioronda.getFullYear()}}
+                {{fechainicioronda.getHours()}}:{{fechainicioronda.getMinutes()}}:{{fechainicioronda.getSeconds()}}
+              </h4>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div *ngIf="validadorRondaPrev" style="margin-top: 1rem;">
+        <mat-divider></mat-divider>
+        <h3 class="titulos-evaluacion"> Retroalimentación</h3>
+        <div class="d-flex justify-content-between" style="margin-top: 2%;">
+          <div class="mr-auto p-2">
+            <h3 class="subtitulos-evaluacion"> Evaluación colectiva de la ronda {{ronda - 1 }}</h3>
+          </div>
+        </div>
+        <table mat-table [dataSource]="dataSourceColectiva" class="shadow-0 border-0">
+          <ng-container matColumnDef="nombreItem">
+            <th mat-header-cell *matHeaderCellDef> Ítem </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreItem}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="aceptacion">
+            <th mat-header-cell *matHeaderCellDef> Nivel de aceptación - Razones </th>
+            <td mat-cell *matCellDef="let element"> {{element.aceptacion}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="rechazo">
+            <th mat-header-cell *matHeaderCellDef> Nivel de rechazo - Razones</th>
+            <td mat-cell *matCellDef="let element"> {{element.rechazo}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsx"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsx;"></tr>
+        </table>
+        <div class="d-flex justify-content-between" style="margin-top: 3%;">
+          <div class="mr-auto p-2">
+            <h3 class="subtitulos-evaluacion">Evaluación individual de la ronda {{ronda - 1 }}</h3>
+          </div>
+        </div>
+        <table mat-table [dataSource]="dataSourceIndividual" class="shadow-0 border-0">
+          <ng-container matColumnDef="nombreItem">
+            <th mat-header-cell *matHeaderCellDef> Ítem </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreItem}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="aceptacion">
+            <th mat-header-cell *matHeaderCellDef> Nivel de aceptación - Razones </th>
+            <td mat-cell *matCellDef="let element"> {{element.aceptacion}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="rechazo">
+            <th mat-header-cell *matHeaderCellDef> Nivel de rechazo - Razones</th>
+            <td mat-cell *matCellDef="let element"> {{element.rechazo}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsx"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsx;"></tr>
+        </table>
+        <mat-divider></mat-divider>
+        <h3 class="titulos-evaluacion">Sugerencias</h3>
+        <div *ngFor="let sugerencia of sugerencias">
+          <div class="d-flex justify-content-between">
+            <div class="mr-auto p-2">
+              <h4 class="subtitulos-evaluacion">{{sugerencia.nombreItem}}</h4>
+            </div>
+          </div>
+          <div *ngFor="let s of sugerencia.sugerencia">
+            <ul *ngIf="s.tema=='suitable'">
+              <li *ngIf="s.incrementar">Acción sugerida: Incrementar {{s.valor}} a su nivel de aceptación
+                <div>
+                  Tomar en cuenta los siguientes atributos
+                  <ul *ngFor="let atributo of s.atributos">
+                    <li>{{atributo}}</li>
+                  </ul>
+                </div>
+              </li>
+              <li *ngIf="!s.incrementar">Acción sugerida: Decrementar {{s.valor}} a su nivel de aceptación</li>
+            </ul>
+            <ul *ngIf="s.tema=='unsuitable'">
+              <li *ngIf="s.incrementar">Acción sugerida: Incrementar {{s.valor}} a su nivel de rechazo
+                <div>
+                  Tomar en cuenta los siguientes atributos
+                  <ul *ngFor="let atributo of s.atributos">
+                    <li>{{atributo}}</li>
+                  </ul>
+                </div>
+              </li>
+              <li *ngIf="!s.incrementar">Acción sugerida: Decrementar {{s.valor}} a su nivel de rechazo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="content" *ngIf="consenso">
+  <div class="titletop" style="margin-top: 3rem; justify-content:space-between; display: flex; flex-direction: row;">
+    <h1 slot="start">{{consenso.nombre_consenso}}</h1>
+  </div>
+  <div class="container">
+    <div class="grid">
+      <h3 class="titulos-evaluacion">Información del proceso de consenso</h3>
+      <div>
+        <mat-card class="shadow-none ">
+          <mat-card-content>
+            <p>{{consenso.descripcion}}</p>
+            <div class="row">
+              <div class="col">
+                <p>Nivel de consenso actual: {{nivelalcanzado.toFixed(2)}}</p>
+              </div>
+              <div class="col">
+                <p>Resultado: {{_resultado}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>Nivel de consenso esperado: {{consenso.nivel_consenso}}</p>
+              </div>
+              <div class="col">
+                <p>Estado: finalizado</p>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <mat-divider></mat-divider>
+      <h3 class="titulos-evaluacion">Resultados</h3>
+      <div style="display: block">
+        <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+          [colors]="chartColors" [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div class="d-flex justify-content-between" style="margin-top: 2%;">
+        <div class="mr-auto p-2">
+          <h3 class="subtitulos-evaluacion"> Evaluación colectiva de la ronda {{consenso.rondas}}</h3>
+        </div>
+      </div>
+      <table mat-table [dataSource]="dataSource" class="shadow-0 border-0">
+        <ng-container matColumnDef="nombreItem">
+          <th mat-header-cell *matHeaderCellDef>Ítem</th>
+          <td mat-cell *matCellDef="let element"> {{element.nombreItem}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="aceptacion">
+          <th mat-header-cell *matHeaderCellDef>Nivel de aceptación - Razones</th>
+          <td mat-cell *matCellDef="let element"> {{element.aceptacion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rechazo">
+          <th mat-header-cell *matHeaderCellDef>Nivel de rechazo - Razones</th>
+          <td mat-cell *matCellDef="let element"> {{element.rechazo}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsx"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsx;"></tr>
+      </table>
+
+    </div>
+  </div>
+</div>

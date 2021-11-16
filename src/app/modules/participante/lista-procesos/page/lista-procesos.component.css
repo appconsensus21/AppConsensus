@@ -1,0 +1,8 @@
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header,
+.mat-expansion-panel-header:hover,
+.mat-expansion-panel-header:focus,
+.mat-expansion-panel-header.mat-expanded:hover,
+.mat-expansion-panel-header.mat-expanded:focus {
+    background-color: #f4f5f7;
+}

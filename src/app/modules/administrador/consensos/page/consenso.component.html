@@ -1,0 +1,28 @@
+<div class="content">
+  <div class="titletop" style="margin-top: 3rem; justify-content:space-between; display: flex; flex-direction: row;">
+    <h1 slot="start">Procesos de consenso</h1>
+  </div>
+  <div class="container">
+    <div class="grid">
+      <mat-accordion class="shadow-none">
+        <mat-expansion-panel [expanded]="true" class="shadow-sm">
+          <mat-expansion-panel-header [expandedHeight]="'50px'" [collapsedHeight]="'50px'">
+            <mat-panel-title>
+              Procesos de consenso
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row" style="margin-top: 2rem;">
+            <div class="card" *ngFor="let consenso of _consensos">
+              <a class="stretched-link"></a>
+              <div class="card-body" style="text-align: center;">
+                <h1 class="card-title">{{consenso.nombre_consenso}}</h1>
+                <p>{{consenso.descripcion}}</p>
+                <p>Estado: {{consenso.estado}}</p>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

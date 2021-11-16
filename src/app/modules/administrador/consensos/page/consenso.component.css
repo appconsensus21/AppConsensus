@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .grid {
+    padding: 4%;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .row {
+      flex-direction: column;
+      align-content: center;
+    }
+    .card{
+        width: 15rem;
+    }
+
+    .grid{
+      padding: 2%;
+    }
+  }
+
+.container-flex {
+    display: flex;
+    align-items: center;
+}
+
+.card{
+    border-radius: 10px;
+    width: 15rem;
+}
+
+.material-icons{
+    font-size: 100%;
+}
+.card:hover{
+  border-color: rgb(255, 255, 255);
+  box-shadow: rgba(149, 157, 165, 0.13) 0px 8px 24px;
+}
+
+mat-panel-title{
+  font-weight: 500;
+}

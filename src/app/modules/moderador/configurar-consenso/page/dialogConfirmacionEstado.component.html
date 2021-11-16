@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+    <h2>¿Está seguro que desea {{accion}} el proceso de consenso?</h2>
+</div>
+<div mat-dialog-actions align="center">
+    <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="onYesClick()">Aceptar</button>
+</div>

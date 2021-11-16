@@ -1,0 +1,63 @@
+<h2 style="text-align: center;" mat-dialog-title>Nuevo ítem</h2>
+<mat-dialog-content>
+  <div class="file-input" style="display: flex;justify-content: center;margin-bottom: 1rem;">
+    <input type="file" name="uploadfile" id="img" style="display:none;" (change)="selectFile($event)" />
+    <label class="modal-label" for="img">Seleccionar Imagen</label>
+  </div>
+
+  <div *ngIf="urlimagen !== undefined" style="width: 100%;text-align: center;">
+    <img src="{{urlimagen}}" alt="" style="width: 100%;">
+  </div>
+  <form [formGroup]="itemform">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="itemname" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Descripción</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+  </form>
+  <mat-label>Metadata</mat-label>
+  <form class="metaform" [formGroup]="metadataform">
+    <mat-form-field appearance="outline">
+      <mat-label>Clave</mat-label>
+      <input matInput formControlName="clave">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Valor</mat-label>
+      <input matInput formControlName="valor">
+    </mat-form-field>
+  </form>
+  <button mat-raised-button (click)="addMetadata()" color="primary" [disabled]="!metadataform.valid">
+    Añadir metadata
+  </button>
+  <table mat-table [dataSource]="dataSourceItem" class="shadow-sm border-0">
+    <ng-container matColumnDef="clave">
+      <th mat-header-cell *matHeaderCellDef> Clave </th>
+      <td mat-cell *matCellDef="let element"> {{element.clave}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell *matHeaderCellDef> Valor </th>
+      <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="activo">
+      <th mat-header-cell *matHeaderCellDef> Acción </th>
+      <td mat-cell *matCellDef="let element" class="action-lin">
+        <button mat-icon-button color="primary" (click)="removeMetadata(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsItems"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsItems;"></tr>
+  </table>
+</mat-dialog-content>
+<div align="center">
+  <button mat-button color="primary" mat-dialog-close>Cancelar</button>
+  <button [disabled]="!itemform.valid" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Añadir
+    ítem</button>
+</div>

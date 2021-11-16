@@ -1,0 +1,27 @@
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+mat-form-field {
+  width: 80%;
+}
+
+.duration{
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+mat-vertical-stepper{
+  margin: 4%;
+}
+@media screen and (max-width: 500px) {
+  mat-vertical-stepper{
+    margin: 2%;
+  }
+  mat-vertical-content {
+    padding: 0 14px 14px 14px;
+  }
+}

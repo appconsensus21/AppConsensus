@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>App Consensus</h1>
+    <span class="menu-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container color="primary">
+  <mat-sidenav color="primary" #sidenav [mode]="isLargeScreen() ? 'side' : 'over'" [opened]="isLargeScreen()">
+    <mat-nav-list *ngFor="let sidebarnavItem of sideMenuItems">
+
+      <a mat-list-item *ngIf="sidebarnavItem.title === 'Log out'" (click)="logout()">
+        <span id="icono" matBadge="8" class="material-icons">{{sidebarnavItem.icon}}</span>
+        {{sidebarnavItem.title}}
+      </a>
+
+      <a mat-list-item [routerLink]="sidebarnavItem.routerLink" *ngIf="sidebarnavItem.title !== 'Log out'">
+        <span id="icono" class="material-icons">{{sidebarnavItem.icon}}</span>
+        {{sidebarnavItem.title}}
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

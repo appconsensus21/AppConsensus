@@ -1,0 +1,46 @@
+.content{
+  margin: 3rem;
+}
+
+@media screen and (max-width: 500px) {
+  .content{
+    margin: 1rem;
+  }
+}
+
+table {
+    width: 90%;
+    margin-top: 1.5rem;
+    margin: 4%;
+  }
+
+.material-icons{
+    font-size: 100%;
+}
+
+.container{
+  height: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+  padding: 0px;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.grid {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.13) 0px 8px 24px;
+}
+
+h1{
+  color: #182b4d;
+  font-weight: 500;
+}
+
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+}
+   

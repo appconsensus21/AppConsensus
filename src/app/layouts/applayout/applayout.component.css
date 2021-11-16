@@ -1,0 +1,51 @@
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #F4F6F9;
+}
+
+#icono{
+    margin-right: 0.7rem;
+}
+
+.mat-nav-list{
+    display: flex;
+}
+
+mat-toolbar{
+    color: white;
+    
+}
+.mat-toolbar.mat-primary {
+    position: relative;
+}
+.main-mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1040;
+  }
+
+
+mat-sidenav{
+    width: 240px;
+}
+
+.mat-list-base {
+    padding-top: 0;
+}
+.mat-list-base .mat-list-item {
+    color: #909bb3;
+    font-size: 98%;
+}
+
+.mat-list-item:focus, .mat-list-item:active, .mat-list-item:hover{
+  color: #264986 !important;
+  font-size: 99%;
+  font-weight: 500;
+  border-right: 3px solid #fb6c3b;
+}

@@ -1,0 +1,30 @@
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+}
+table {
+  width: 100%;
+  margin-top: 1rem !important;
+  margin: 4% 0% !important;
+}
+
+.modal-label{
+  display: inline-block;
+  line-height: 2.2em;
+  padding: 0 0.62em;
+  border: 1px solid #666;
+  border-radius: 0.25em;
+  background-color: #3f51b5;
+  color: white;
+  box-shadow: inset 0 0 0.1em #fff, 0.2em 0.2em 0.2em rgba( 0, 0, 0, 0.3 );
+}
+
+.modal-label:hover {
+  border-color: #3c7fb1;
+  background-color: #a9dbf6;
+  color: black;
+}
+
+.modal-label:focus {
+  padding: 0  0.56em 0 0.68em;
+}

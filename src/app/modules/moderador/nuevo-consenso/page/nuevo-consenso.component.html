@@ -1,0 +1,71 @@
+<div class="content">
+  <div class="titletop" style="margin-top: 3rem; justify-content:space-between; display: flex; flex-direction: row;">
+    <h1 slot="start">Nuevo proceso de consenso</h1>
+  </div>
+  <div class="container">
+    <div class="grid">
+      <mat-vertical-stepper color="accent" linear="true" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <mat-form-field appearance="outline">
+              <mat-label>Código de proceso</mat-label>
+              <input readonly matInput formControlName="code" required [(ngModel)]="codigo">
+              <button mat-icon-button matSuffix [cdkCopyToClipboard]="codigo">
+                <mat-icon>file_copy</mat-icon>
+              </button>
+
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre del proceso de consenso</mat-label>
+              <input matInput formControlName="groupname" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Descripción</mat-label>
+              <textarea matInput formControlName="topic"></textarea>
+            </mat-form-field>
+            <div>
+              <button mat-raised-button expand color="primary" matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- #docregion label -->
+        <mat-step [stepControl]="secondFormGroup">
+          <!-- #enddocregion label -->
+          <form [formGroup]="secondFormGroup">
+            <mat-form-field appearance="outline">
+              <mat-label>Número de rondas</mat-label>
+              <input type="number" matInput formControlName="rondas" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Duración de rondas</mat-label>
+              <input class="duration" type="number" matInput formControlName="duracion" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Formato de duración de las rondas</mat-label>
+              <mat-select formControlName="format">
+                <mat-option *ngFor="let d of timeFormat" value="{{d.valor}}">{{d.formato}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Nivel de consenso esperado</mat-label>
+              <input type="number" matInput formControlName="nivel" required>
+              <mat-hint>Valor numérico entre cero y uno</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha y hora de inicio</mat-label>
+              <input [min]="fechaMinima" matInput [ngxMatDatetimePicker]="pickerFrom" formControlName="fecha">
+              <mat-datepicker-toggle matSuffix [for]="$any(pickerFrom)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker color="accent" #pickerFrom [enableMeridian]="true"></ngx-mat-datetime-picker>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Atrás</button>
+              <button [disabled]="!secondFormGroup.valid" mat-raised-button expand color="primary" matStepperNext (click)="crearConsenso()">Crear</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </div>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Creando proceso de consenso. </p>
+  </ngx-spinner>

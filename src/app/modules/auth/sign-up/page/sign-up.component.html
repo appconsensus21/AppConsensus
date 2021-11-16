@@ -1,0 +1,46 @@
+<div class="container-login" fxLayout="row" fxLayoutAlign="center center">
+  <h1>App Consensus</h1>
+  <div class="card bg-secondary shadow border-0" style="text-align: center;">
+    <div class="card-body px-lg-5 py-lg-5">
+      <form [formGroup]="formRegistro">
+        <h2>Registro</h2>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre(s)</mat-label>
+          <input matInput formControlName="nombres" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido(s)</mat-label>
+          <input matInput formControlName="apellidos" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput placeholder="Correo electrónico" formControlName="email" required>
+          <mat-error>
+            Ingrese un correo electrónico válido
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="formRegistro.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirmar contraseña</mat-label>
+          <input matInput [type]="hideconfirm ? 'password' : 'text'" formControlName="confirmPassword" required>
+          <button mat-icon-button matSuffix (click)="hideconfirm = !hideconfirm">
+            <mat-icon>{{hideconfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="formRegistro.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <button [disabled]="!formRegistro.valid" (click)="registrar()" mat-raised-button
+          color="primary">Registrar</button>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <small>¿Ya posees cuenta? <a routerLink="/login">Inicia sesión</a></small>
+  </div>
+</div>

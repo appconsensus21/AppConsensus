@@ -1,0 +1,17 @@
+<h2 style="text-align: center;" mat-dialog-title>Ingresar a proceso de consenso</h2>
+<mat-dialog-content>
+  <form [formGroup]="codeForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Código del proceso de consenso</mat-label>
+      <input matInput formControlName="code" required>
+      <mat-error>
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+    <div align="center">
+      <button mat-button color="primary" (click)="close()">Cancelar</button>
+      <button [disabled]="!codeForm.valid" mat-raised-button color="primary"
+        (click)="_ingresarConsenso()">Ingresar</button>
+    </div>
+  </form>
+</mat-dialog-content>

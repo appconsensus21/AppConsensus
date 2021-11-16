@@ -1,0 +1,195 @@
+<div class="content" *ngIf="consenso">
+  <div class="titletop" style="margin-top: 3rem; justify-content:space-between; display: flex; flex-direction: row;">
+    <h1 *ngIf="!validatorFinalizado" slot="start">Configuración del proceso de consenso</h1>
+    <h1 *ngIf="validatorFinalizado" slot="start">{{consenso.nombre_consenso}}</h1>
+  </div>
+  <div class="container">
+    <div class="grid">
+      <div class="row" style="justify-content: space-between;">
+        <h2 class="col-md-6">Proceso de consenso</h2>
+        <mat-form-field class="col-md-4" appearance="fill">
+          <mat-label>Cambiar estado</mat-label>
+          <mat-select [disabled]="validatorFinalizado" (selectionChange)="onEstadoChange($event)">
+            <mat-option *ngFor="let estado of estados" [value]="estado.value">
+              {{estado.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <h3 class="titulos-evaluacion">Información del proceso de consenso</h3>
+      <mat-card class="shadow-none">
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <p>NIvel de consenso alcanzado: {{nivelalcanzado}}</p>
+            </div>
+            <div class="col">
+              <p>Código: {{consenso?.codigo}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p>Nivel de consenso esperado: {{consenso?.nivel_consenso}}</p>
+            </div>
+            <div class="col">
+              <p>Rondas: {{consenso?.rondas}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p>Descripción: {{consenso?.descripcion}}</p>
+            </div>
+            <div class="col">
+              <p>Resultado: {{resultado}}</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <ng-container *ngIf="!validatorFinalizado">
+        <div class="d-flex justify-content-between" style="margin-top: 3%;">
+          <div class="mr-auto p-2">
+            <h2>Ítems</h2>
+          </div>
+          <div class="ml-auto p-2">
+            <button [disabled]="disableoptions" mat-stroked-button color="accent" (click)="newItem()">
+              Añadir item
+            </button>
+          </div>
+        </div>
+        <p style="padding: 0 8px; color: rgb(153, 163, 185); font-style: italic;">Para inicializar el proceso, deben existir al menos dos ítems</p>
+        <table mat-table [dataSource]="dataSource" class="shadow-sm border-0">
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Ítem </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef> Acción </th>
+            <td mat-cell *matCellDef="let element">
+              <button [disabled]="disableoptions" (click)="deleteDialog('ítem', element)" mat-icon-button color="primary">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="d-flex justify-content-between" style="margin-top: 3%;">
+          <div class="mr-auto p-2">
+            <h2>Atributos</h2>
+          </div>
+          <div class="ml-auto p-2">
+            <button [disabled]="disableoptions" mat-stroked-button color="accent" (click)="newAttribute()">
+              Añadir atributo
+            </button>
+          </div>
+        </div>
+        <table mat-table [dataSource]="dataSourceAtributes" class="shadow-sm border-0">
+          <ng-container matColumnDef="atributo">
+            <th mat-header-cell *matHeaderCellDef> Atributo </th>
+            <td mat-cell *matCellDef="let element"> {{element.atributo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef> Acción </th>
+            <td mat-cell *matCellDef="let element">
+              <button [disabled]="disableoptions" (click)="deleteDialog('atributo', element)" mat-icon-button color="primary">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsAtributes"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsAtributes;"></tr>
+        </table>
+        <div class="d-flex justify-content-between" style="margin-top: 3%;">
+          <div class="mr-auto p-2">
+            <h2>Participantes</h2>
+          </div>
+          <div class="ml-auto p-2">
+            <button [disabled]="disableoptions" mat-stroked-button color="accent" (click)="newParticipant()">
+              Añadir participante
+            </button>
+          </div>
+        </div>
+        <table mat-table [dataSource]="dataSourceParticipant" class="shadow-sm border-0">
+          <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef> Nombres </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="apellidos">
+            <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+            <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef> Activo </th>
+            <td mat-cell *matCellDef="let element">
+              <div *ngIf="element.estado">
+                <mat-icon [ngStyle]="{'color':'#28a745'}">check_circle</mat-icon>
+              </div>
+              <div *ngIf="!element.estado">
+                <mat-icon [ngStyle]="{'color':'#dc3545'}">cancel</mat-icon>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsParticipant"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsParticipant;"></tr>
+        </table>
+
+      </ng-container>
+
+      <ng-container *ngIf="validatorFinalizado">
+        <h3 class="titulos-evaluacion">Resultados</h3>
+        <div style="display: block">
+          <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+        <div class="d-flex justify-content-between" style="margin-top: 2%;">
+          <div class="mr-auto p-2">
+            <h3 class="subtitulos-evaluacion"> Evaluación colectiva de la ronda {{consenso?.rondas}}</h3>
+          </div>
+        </div>
+        <table mat-table [dataSource]="dataEvaluacionColectiva" class="shadow-sm border-0" style="margin-top: 0!important;">
+          <ng-container matColumnDef="nombreItem">
+            <th mat-header-cell *matHeaderCellDef>Ítem </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreItem}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="aceptacion">
+            <th mat-header-cell *matHeaderCellDef> Nivel de aceptación </th>
+            <td mat-cell *matCellDef="let element"> {{element.aceptacion}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="rechazo">
+            <th mat-header-cell *matHeaderCellDef> Nivel de rechazo </th>
+            <td mat-cell *matCellDef="let element"> {{element.rechazo}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsx"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsx;"></tr>
+        </table>
+      </ng-container>
+      <div *ngIf="!validatorFinalizado" class="d-flex justify-content-end">
+        <button [disabled]="disableoptions" mat-raised-button color="primary" (click)="iniciarproceso()">
+          Iniciar
+        </button>
+      </div>
+    </div>
+  </div>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Iniciando proceso de consenso. </p>
+  </ngx-spinner>

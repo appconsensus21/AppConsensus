@@ -1,0 +1,31 @@
+<h2 style="text-align: center;" mat-dialog-title>Añadir Moderador</h2>
+<mat-dialog-content>
+  <form [formGroup]="forminvitation" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombres</mat-label>
+      <input matInput formControlName="username" required>
+      <mat-error>
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Apellidos</mat-label>
+      <input matInput formControlName="lastname" required>
+      <mat-error>
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput formControlName="email" required>
+      <mat-error>
+        Ingrese un correo electrónico válido
+      </mat-error>
+    </mat-form-field>
+    <div align="center">
+      <button mat-button color="primary" mat-dialog-close>Cancelar</button>
+      <button [disabled]="!forminvitation.valid" mat-raised-button color="primary" type="submit">Añadir
+        moderador</button>
+    </div>
+  </form>
+</mat-dialog-content>

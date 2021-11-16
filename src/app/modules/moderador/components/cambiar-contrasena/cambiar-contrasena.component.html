@@ -1,0 +1,29 @@
+<h2 style="text-align: center;" mat-dialog-title>Cambiar contraseña</h2>
+<mat-dialog-content>
+  <form [formGroup]="changepass">
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña nueva</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+      <button  mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="changepass.invalid">
+        {{getErrorMessage()}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirmar contraseña</mat-label>
+      <input [errorStateMatcher]="matcher" matInput [type]="hidec ? 'password' : 'text'" formControlName="passwordc" required>
+      <button  mat-icon-button matSuffix (click)="hidec = !hidec">
+        <mat-icon>{{hidec ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="changepass.hasError('notSame')">
+        Las contraseñas no coinciden
+      </mat-error> 
+    </mat-form-field>
+    <div align="center">
+      <button mat-button color="primary" (click)="close()" mat-dialog-close>Cancelar</button>
+      <button [disabled]="!changepass.valid" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Cambiar</button>
+    </div>
+  </form>
+</mat-dialog-content>

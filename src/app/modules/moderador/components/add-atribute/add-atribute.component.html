@@ -1,0 +1,18 @@
+<h2 style="text-align: center;" mat-dialog-title>Nuevo atributo</h2>
+<mat-dialog-content>
+  <form [formGroup]="atributoForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Atributo</mat-label>
+      <input matInput formControlName="atributo" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Descripción</mat-label>
+      <input matInput formControlName="valor">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<div align="center">
+  <button mat-button color="primary" (click)="close()">Cancelar</button>
+  <button [disabled]="!atributoForm.valid" mat-raised-button color="primary" (click)="addatributo()">Añadir
+    atributo</button>
+</div>

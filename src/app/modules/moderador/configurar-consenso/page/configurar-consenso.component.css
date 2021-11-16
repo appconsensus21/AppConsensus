@@ -1,0 +1,19 @@
+
+.grid {
+  padding: 4%;
+}
+
+h3{
+  font-weight: 600;
+}
+
+h2{
+  color: rgb(131, 141, 150);
+  margin: 1%;
+}
+
+table {
+  width: 100% !important;
+  margin-top: 1rem !important;
+  margin: 4% 0% !important;
+}

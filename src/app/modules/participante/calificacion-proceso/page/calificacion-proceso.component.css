@@ -1,0 +1,39 @@
+mat-slider {
+    width: 100%;
+  }
+
+  mat-panel-title {
+    flex-basis: 0;
+  }
+
+table {
+    width: 100% !important;
+    margin: 1% !important;
+  }
+.card{
+  width: 100% !important;
+}
+
+.grid{
+  padding: 2%;
+}
+
+.btn-atributos{
+  background-color: #5c95d4;
+  color: white;
+}
+
+p{
+  color: #4B6587;
+}
+
+.eval-prev{
+  background: #e7ecf3;
+}
+
+.type-eval{
+  margin-bottom: 1%;
+  color: #000000;
+  font-style: italic;
+  font-weight: 700;
+}

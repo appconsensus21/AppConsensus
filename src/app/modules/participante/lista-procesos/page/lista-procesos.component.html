@@ -1,0 +1,65 @@
+<div class="content">
+  <div class="titletop" style="margin-top: 3rem; justify-content:space-between; display: flex; flex-direction: row;">
+    <h1 slot="start">Procesos de consenso</h1>
+  </div>
+  <div class="titletop" style="margin-top: 1rem; justify-content:space-between; display: flex; flex-direction: row;">
+    <button mat-raised-button color="primary" (click)="ingresarConsenso()">Ingresar a proceso de consenso</button>
+  </div>
+  <div class="container">
+    <div class="grid">
+      <mat-accordion class="shadow-none">
+        <mat-expansion-panel  *ngIf="consensos.length != 0" [expanded]="true" class="shadow-sm">
+          <mat-expansion-panel-header [expandedHeight]="'50px'" [collapsedHeight]="'50px'">
+            <mat-panel-title>
+              Iniciados
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row" style="margin-top: 2rem;">
+            <div class="card" *ngFor="let c of consensos">
+              <div class="card-body" style="text-align: center;">
+                <h1 class="card-title">{{c.nombre_consenso}}</h1>
+                <p>{{c.descripcion}}</p>
+                <p>Estado: {{c.estado}}</p>
+                <button mat-raised-button color="primary" (click)="evaluacion(c.id)">Evaluar</button>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="consensospausados.length != 0" [expanded]="true" class="shadow-sm">
+          <mat-expansion-panel-header [expandedHeight]="'50px'" [collapsedHeight]="'50px'">
+            <mat-panel-title>
+              Pausados
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row" style="margin-top: 2rem;">
+            <div class="card" *ngFor="let c of consensospausados">
+              <div class="card-body" style="text-align: center;">
+                <h1 class="card-title">{{c.nombre_consenso}}</h1>
+                <p>{{c.descripcion}}</p>
+                <p>Estado: {{c.estado}}</p>
+                <button disabled mat-raised-button color="primary" (click)="resultados(c.id)">Evaluar</button>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="consensosfinalizados.length != 0" [expanded]="true" class="shadow-sm">
+          <mat-expansion-panel-header [expandedHeight]="'50px'" [collapsedHeight]="'50px'">
+            <mat-panel-title>
+              Finalizados
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row" style="margin-top: 2rem;">
+            <div class="card" *ngFor="let c of consensosfinalizados">
+              <div class="card-body" style="text-align: center;">
+                <h1 class="card-title">{{c.nombre_consenso}}</h1>
+                <p>{{c.descripcion}}</p>
+                <p>Estado: {{c.estado}}</p>
+                <button mat-raised-button color="primary" (click)="resultados(c.id)">Resultados</button>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

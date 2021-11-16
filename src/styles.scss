@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+@import '~ngx-toastr/toastr';
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+}
+html, body {
+  margin: 0px;
+  padding: 0px;
+  .ronda-info{
+    color: rgb(131, 141, 150);
+    font-weight: 500;
+    margin-bottom: 1% !important;
+  }
+  
+  .titulos-evaluacion{
+    color: #182b4d !important;
+    text-align: center !important;
+    font-weight: 500;
+    background-color: #f4f5f7;
+  }
+  
+  .subtitulos-evaluacion{
+    color: #4B6587;
+    padding: 0 8px; 
+    margin: 0;
+    font-style: italic;
+  }
+  
+}
+body{
+  background-color: #f4f5f7;
+  font-family: 'Courier New', Courier, monospace;
+  padding-top: 4.5rem;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Courier New', Courier, monospace}
+.mat-drawer-container {
+  background-color: #f4f5f7;
+}
+
+.dialog-responsive {
+  width: 40%;
+}
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header,
+.mat-expansion-panel-header:hover,
+.mat-expansion-panel-header:focus,
+.mat-expansion-panel-header.mat-expanded:hover,
+.mat-expansion-panel-header.mat-expanded:focus {
+    background-color: #f4f5f7;
+}
+
+.mat-header-cell{
+  font-weight: 700;
+  text-align: center;
+  color: #182B4D;
+  background-color: #35b3890a;
+}
+
+.navbar-custom {
+  background-color: #182b4d;
+}
+
+
+@media only screen and (max-width: 760px) {
+  .dialog-responsive {
+      width: 100%;
+  }
+}

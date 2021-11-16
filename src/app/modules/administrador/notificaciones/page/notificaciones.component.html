@@ -1,0 +1,32 @@
+<div class="content">
+  <div class="titletop" style="margin-top: 3rem; justify-content:space-between; display: flex; flex-direction: row;">
+    <h1 slot="start">Enviar notificación</h1>
+  </div>
+  <div class="container">
+    <div class="grid">
+      <form [formGroup]="notificationForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Destinatarios</mat-label>
+          <mat-select formControlName="sendto" required>
+            <mat-option value="moderador">Moderadores</mat-option>
+            <mat-option value="participante">Participantes</mat-option>
+            <mat-option value="todo">Todos</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Asunto</mat-label>
+          <input matInput formControlName="asunto" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Mensaje</mat-label>
+          <textarea matInput formControlName="message" required></textarea>
+        </mat-form-field>
+        <div align="center">
+          <button mat-button color="primary" (click)="_limpiarFormulario()">Limpiar</button>
+          <button [disabled]="!notificationForm.valid" mat-raised-button color="primary"
+            (click)="_enviarFormulario()">Enviar notificación</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
