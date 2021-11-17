@@ -44,7 +44,7 @@ En la ruta functions el archivo .env se debe colocar el correo electrónico y co
 1.	La aplicación tiene algunas librerías externas que complementan su funcionalidad y para levantar un ambiente local de trabajo es necesario instalar estas dependencias para que la aplicación funcione en un ambiente local. Para realizar esto se abre a una consola de comandos que tenga de ubicación la carpeta principal del código fuente (mismo nivel que la carpeta src). Una vez abierta la consola se procede a ejecutar el comando para instalar los paquetes `npm` descritos en el `package.json` y verificar su funcionamiento:
 ```shell
 npm i
-```shell
+```
 Este comando va a instalar todos los módulos y librerías que necesita la aplicación para ejecutarse.
 
 ### Instalación de Firebase Tools
@@ -52,7 +52,7 @@ Este comando va a instalar todos los módulos y librerías que necesita la aplic
 Ejecuta el siguiente comando para instalar la CLI a través de npm:
 ```shell
 npm install -g firebase-tools
-```shell
+```
 
 ### Instalación de dependencias de la carpeta de funciones de firebase
 
