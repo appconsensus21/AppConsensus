@@ -64,7 +64,7 @@ Seguido a esto se procede a inicializar el modulo Functions de firebase con el s
 ```shell
 firebase init functions
 ```
-Es importante recalcar no sobrescribir ningun archivo de la carpeta functions ya que algun cambio afectaria directamente el funcionamiento de la aplicacion. Además el lenguaje a utilizar es Javascript y se selecciona que se quiere instalar las dependencias con el comando npm en ese momento.
+Es importante no sobrescribir ningún archivo de la carpeta *functions* ya que algun cambio afectaria directamente el funcionamiento de la aplicacion. Además el lenguaje a utilizar es Javascript y se selecciona que se quiere instalar las dependencias con el comando npm en ese momento.
 
 Finalmente se ejecuta el siguiente comando para implementar las funciones desarrolladas:
 ```shell
