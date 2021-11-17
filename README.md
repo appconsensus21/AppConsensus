@@ -63,4 +63,5 @@ Este comando va a instalar todos los módulos y librerías que necesita la aplic
 ng serve
 ``` 
 Es importante que el comando se ejecute en una consola de comandos con la ubicación de la carpeta principal del código fuente (mismo nivel que la carpeta src).
+
 2.	Se ingresa en un buscador web la dirección http://localhost:4200/. Y la aplicación se recargará automáticamente y se mostrará en la pantalla del buscador.
