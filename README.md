@@ -14,7 +14,7 @@ La versión actual de *AppConsensus* consta de tres módulos principales: *admin
 - Proyecto de Firebase en plan Blaze
 - Firebase CLI
 
-Para mayor información sobre la instalación de estas tecnologías consultar el [Manual de Instalación](https://github.com/appconsensus21/AppConsensus/tree/main/manuales)
+Para mayor información sobre la instalación de estas tecnologías consultar el [Manual de Instalación](https://github.com/appconsensus21/AppConsensus/blob/main/manuales/ManualdeInstalacion.pdf)
 
 ## Licencia
 
@@ -34,11 +34,11 @@ Para poder crear un proyecto en la plataforma de [Firebase](https://firebase.goo
 
 ### Configuración de Firebase en la aplicación
 
-En la ruta src/environments/config se encuentra el archivo firebaseConfig, donde se debe colocar la configuración que Firebase proporciona en el proyecto creado en el paso anterior.
+En la ruta src/environments/config se encuentra el archivo [firebaseConfig](https://github.com/appconsensus21/AppConsensus/blob/main/src/environments/config/firebaseConfig.ts), donde se debe colocar la configuración que Firebase proporciona en el proyecto creado en el paso anterior.
 
 ### Configuración de Funciones de Firebase en la aplicación
 
-En la ruta functions el archivo .env se debe colocar el correo electrónico y contraseña correspondientes para enviar las diversas notificaciones a los usuarios. Adicional se debe configurar la dirección web de la aplicación.
+En la ruta functions el archivo [.env](https://github.com/appconsensus21/AppConsensus/blob/main/functions/.env) se debe colocar el correo electrónico y contraseña correspondientes para enviar las diversas notificaciones a los usuarios. Adicional se debe configurar la dirección web de la aplicación.
 
 ### Instalación de dependencias de la aplicación
 
