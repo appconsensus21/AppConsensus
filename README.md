@@ -1,4 +1,4 @@
-![AppConsensus](https://github.com/appconsensus21/AppConsensus/blob/main/src/assets/AppConsensus.png)
+![AppConsensus](https://github.com/ginpajac/AplicacionWebConsenso/blob/master/src/assets/AppConsensus.png)
 
 ## Introducción
 *AppConsensus* es una aplicación web desarrollada con [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2. para consensos grupales sobre la evaluación de productos o servicios utilizando conjuntos flexibles de atributos. *AppConsensus* permite generar procesos de consenso, observar avances de un proceso de consenso, evaluar productos o servicios y mostrar sugerencias.
@@ -13,7 +13,7 @@ La versión actual de *AppConsensus* consta de tres módulos principales: *admin
 - Angular CLI 11.1.2
 - Proyecto de Firebase en plan Blaze
 
-Para mayor información sobre la instalación de estas tecnologías consultar el [Manual de Instalación](https://github.com/appconsensus21/AppConsensus/tree/main/manuales)
+Para mayor información sobre la instalación de estas tecnologías consultar el [Manual de Instalación](https://github.com/angular/angular-cli)
 
 ## Licencia
 
@@ -41,11 +41,35 @@ En la ruta functions el archivo .env se debe colocar el correo electrónico y co
 
 ### Instalación de dependencias de la aplicación
 
-1.	La aplicación tiene algunas librerías externas que complementan su funcionalidad y para levantar un ambiente local de trabajo es necesario instalar estas dependencias para que la aplicación funcione en un ambiente local. Para realizar esto se abre a una consola de comandos que tenga de ubicación la carpeta principal del código fuente (mismo nivel que la carpeta src). Una vez abierta la consola se procede a ejecutar el comando para instalar los paquetes `npm` descritos en el `package.json` y verificar su funcionamiento::
+1.	La aplicación tiene algunas librerías externas que complementan su funcionalidad y para levantar un ambiente local de trabajo es necesario instalar estas dependencias para que la aplicación funcione en un ambiente local. Para realizar esto se abre a una consola de comandos que tenga de ubicación la carpeta principal del código fuente (mismo nivel que la carpeta src). Una vez abierta la consola se procede a ejecutar el comando para instalar los paquetes `npm` descritos en el `package.json` y verificar su funcionamiento:
 ```shell
 npm i
-```
+```shell
 Este comando va a instalar todos los módulos y librerías que necesita la aplicación para ejecutarse.
+
+### Instalación de Firebase Tools
+
+Ejecuta el siguiente comando para instalar la CLI a través de npm:
+```shell
+npm install -g firebase-tools
+```shell
+
+### Instalación de dependencias de la carpeta de funciones de firebase
+
+La aplicacion utiliza el modulo de funciones disponibles en la plataforma de firebase y para poder activar y utilizar este modulo se comienza haciendo un login con la cuenta corresponiente de Firebase:
+```shell
+fireabase login
+```
+Seguido a esto se procede a inicializar el modulo Functions de firebase con el siguiente comando:
+```shell
+firebase init functions
+```
+Es importante recalcar no sobrescribir ningun archivo de la carpeta functions ya que algun cambio afectaria directamente el funcionamiento de la aplicacion. Además el lenguaje a utilizar es Javascript y se selecciona que se quiere instalar las dependencias con el comando npm en ese momento.
+
+Finalmente se ejecuta el siguiente comando para implementar las funciones desarrolladas:
+```shell
+firebase deploy --only functions
+```
 
 ### Ejecutar la aplicación en ambiente local
 
