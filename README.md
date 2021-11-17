@@ -29,7 +29,7 @@ git clone https://github.com/appconsensus21/AppConsensus
 
 ### Creación de proyecto en Firebase
 
-Para poder crear un proyecto en la plataforma de Firebase(https://firebase.google.com/) es necesario contar con una cuenta de Google, además es necesario tener una sesión activa de la Cuenta Google para acceder a la página inicial de la consola de Firebase.
+Para poder crear un proyecto en la plataforma de [Firebase](https://firebase.google.com/) es necesario contar con una cuenta de Google, además es necesario tener una sesión activa de la Cuenta Google para acceder a la página inicial de la consola de Firebase.
 
 ### Configuración de Firebase en la aplicación
 
