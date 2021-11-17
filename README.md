@@ -25,7 +25,6 @@ AppConsensus se publica bajo la licencia de [Apache License, Version 2.0](LICENS
 
 ```shell
 git clone https://github.com/appconsensus21/AppConsensus
-cd 
 ```
 
 ### Creación de proyecto en Firebase
