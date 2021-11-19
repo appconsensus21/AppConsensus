@@ -59,7 +59,7 @@ npm install -g firebase-tools
 
 La aplicacion utiliza el modulo de funciones disponibles en la plataforma de firebase y para poder activar y utilizar este modulo se comienza haciendo un login con la cuenta corresponiente de Firebase:
 ```shell
-fireabase login
+firebase login
 ```
 Seguido a esto se procede a inicializar el modulo Functions de firebase con el siguiente comando:
 ```shell
