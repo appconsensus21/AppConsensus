@@ -57,15 +57,17 @@ npm install -g firebase-tools
 
 ### Instalación de dependencias de la carpeta de funciones de firebase
 
-La aplicacion utiliza el modulo de funciones disponibles en la plataforma de firebase y para poder activar y utilizar este modulo se comienza haciendo un login con la cuenta corresponiente de Firebase:
+La aplicación utiliza el módulo de funciones disponibles en la plataforma de firebase y para poder activar y utilizar este módulo se comienza haciendo un login con la cuenta corresponiente de Firebase:
 ```shell
 firebase login
 ```
-Seguido a esto se procede a inicializar el modulo Functions de firebase con el siguiente comando:
+La guía de instalación y autenticación de Firebase CLI se puede encontrar en la [Documentación de Firebase](https://firebase.google.com/docs/cli).
+
+Seguido a esto se procede a inicializar el módulo Functions de firebase con el siguiente comando:
 ```shell
 firebase init functions
 ```
-Es importante no sobrescribir ningún archivo de la carpeta *functions* ya que algun cambio afectaria directamente el funcionamiento de la aplicacion. Además el lenguaje a utilizar es Javascript y se selecciona que se quiere instalar las dependencias con el comando npm en ese momento.
+Es importante no sobrescribir ningún archivo de la carpeta *functions* ya que cualquier cambio afectaría directamente el funcionamiento de la aplicación. Además el lenguaje a utilizar es *Javascript* y se selecciona que se quiere instalar las dependencias con el comando npm en ese momento.
 
 Finalmente se ejecuta el siguiente comando para implementar las funciones desarrolladas:
 ```shell
