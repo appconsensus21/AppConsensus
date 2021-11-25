@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { UsuarioService } from '../../services/usuario.service';
   templateUrl: './applayout-mod.component.html',
   styleUrls: ['./applayout-mod.component.css', '../applayout/applayout.component.css']
 })
-export class ApplayoutModComponent implements OnInit {
+export class ApplayoutModComponent implements OnInit, OnDestroy  {
   sideMenuItems: any;
   togglenavbar = false;
   username = '';
@@ -35,17 +35,17 @@ export class ApplayoutModComponent implements OnInit {
     this.getCurrentUser();
   }
 
+  ngOnDestroy(){
+    this._servicioUsuario.unsubscribe();
+  }
+
   ngAfterViewInit() {
     if (this.togglenavbar) {
     }
   }
 
-  async logout() { 
-    this.router.navigate(['/login']);
-    this.authService.signOut().then(()=>{
-      this.toastr.info('Sesión cerrada correctamente', '¡Hasta Luego!');
-    });
-
+  logout() {
+    this._servicioUsuario.logout();
   }
 
   openDropDown(){

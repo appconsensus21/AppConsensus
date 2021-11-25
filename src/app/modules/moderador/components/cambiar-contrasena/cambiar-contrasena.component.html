@@ -4,7 +4,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Contraseña nueva</mat-label>
       <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-      <button  mat-icon-button matSuffix (click)="hide = !hide">
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
       <mat-error *ngIf="changepass.invalid">
@@ -14,7 +14,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Confirmar contraseña</mat-label>
       <input [errorStateMatcher]="matcher" matInput [type]="hidec ? 'password' : 'text'" formControlName="passwordc" required>
-      <button  mat-icon-button matSuffix (click)="hidec = !hidec">
+      <button type="button" mat-icon-button matSuffix (click)="hidec = !hidec">
         <mat-icon>{{hidec ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
       <mat-error *ngIf="changepass.hasError('notSame')">

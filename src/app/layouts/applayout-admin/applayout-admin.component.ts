@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-applayout-admin',
@@ -17,9 +18,12 @@ export class ApplayoutAdminComponent implements OnInit {
 
   @ViewChild('sidenav')
   public sidenav!: MatSidenav;
-  constructor(private route: ActivatedRoute, private router: Router, public authService: AngularFireAuth,
-    private toastr: ToastrService,
-    private dialog: MatDialog) {
+  constructor(
+    private route: ActivatedRoute,
+    public authService: AngularFireAuth,
+    private _servicioUsuario: UsuarioService,
+    private dialog: MatDialog
+    ) {
 
   }
 
@@ -33,11 +37,8 @@ export class ApplayoutAdminComponent implements OnInit {
     }
   }
 
-  async logout() {
-    this.router.navigate(['/login']);
-    this.authService.signOut().then(() => {
-      this.toastr.info('Sesión cerrada correctamente', '¡Hasta Luego!');
-    });
+  logout() {
+    this._servicioUsuario.logout();
   }
 
   isLargeScreen() {

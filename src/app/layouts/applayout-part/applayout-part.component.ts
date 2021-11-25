@@ -38,11 +38,7 @@ export class ApplayoutPartComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/login']);
-    this.authService.signOut().then(()=>{
-      this.toastr.info('Sesión cerrada correctamente', '¡Hasta Luego!');
-    });
-    
+    this._servicioUsuario.logout();
   }
 
   isLargeScreen() {

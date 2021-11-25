@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UsuarioService } from '../../../../services/usuario.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -24,6 +25,7 @@ export class SignInComponent implements OnInit {
     private ngZone: NgZone,
     private _angularFireauth: AngularFireAuth,
     private _servicioNotificacion: ToastrService,
+    private _servicioUsuario: UsuarioService,
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +36,7 @@ export class SignInComponent implements OnInit {
   }
 
   public login() {
+    this._servicioUsuario.subscribe();
     this.showSpinner = true;
     this._angularFireauth.signInWithEmailAndPassword(this.form.get('username')?.value, this.form.get('password')?.value).then((result) => {
       this.firebase.firestore.collection("usuario").where("uid", "==", result.user?.uid).onSnapshot(snap => {

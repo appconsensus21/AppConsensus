@@ -19,6 +19,21 @@ export class UsuarioService {
     private _servicioNotificacion: ToastrService,
   ) { }
 
+  public unsubscribe(){
+    firebase.firestore().disableNetwork();
+  }
+
+  public subscribe(){
+    firebase.firestore().enableNetwork();
+  }
+
+  public logout(){
+    this._firebaseAuth.signOut().then(()=>{
+      this._router.navigate(['/login']);
+      this._servicioNotificacion.info('Sesión cerrada correctamente', '¡Hasta Luego!');
+    });
+  }
+  
   public async _crearUsuario(id: any, data: any) {
     data.uid = id;
     return await firebase.firestore().collection('usuario').doc(id).set(data);
