@@ -38,7 +38,9 @@ En la ruta src/environments/config se encuentra el archivo [firebaseConfig](http
 
 ### Configuración de Funciones de Firebase en la aplicación
 
-En la ruta functions el archivo [.env](https://github.com/appconsensus21/AppConsensus/blob/main/functions/.env) se debe colocar el correo electrónico de gmail y contraseña correspondientes para enviar las diversas notificaciones a los usuarios. Adicional se debe configurar la dirección web de la aplicación.
+En la ruta functions el archivo [.env](https://github.com/appconsensus21/AppConsensus/blob/main/functions/.env) se debe colocar el correo electrónico de gmail y la contraseña para la aplicación para enviar las diversas notificaciones a los usuarios. Adicional se debe configurar la dirección web de la aplicación.
+
+Para generar la contraseña de la aplicación se debe seguir los pasos indicados en este [manual](https://github.com/appconsensus21/AppConsensus/blob/main/manuales/ManualContrasenaNotificaciones.pdf)
 
 ### Instalación de dependencias de la aplicación
 
