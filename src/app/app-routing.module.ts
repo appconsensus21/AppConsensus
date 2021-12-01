@@ -7,6 +7,10 @@ import { CalificacionProcesoComponent } from './modules/participante/calificacio
 import { EvaluacionProcesoComponent } from './modules/participante/evaluacion-proceso/page/evaluacion-proceso.component';
 import { ListaProcesosComponent } from './modules/participante/lista-procesos/page/lista-procesos.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { GuardComponent } from './guards/guard.component';
+import { GuardModeradorComponent } from './guards/guardModerador.component';
+import { GuardParticipanteComponent } from './guards/guardParticipante.component';
+
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
 
@@ -31,25 +35,25 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard,GuardComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/administrador/home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'consensos',
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard,GuardComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/administrador/consensos/consensos.module').then(m => m.ConsensosModule)
       },
       {
         path: 'moderadores',
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard,GuardComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/administrador/moderadores/moderadores.module').then(m => m.ModeradoresModule)
       },
       {
         path: 'enviarnotificacion',
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard,GuardComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/administrador/notificaciones/notificaciones.module').then(m => m.NotificacionesModule)
       },
@@ -67,25 +71,25 @@ const routes: Routes = [
       {
         path: 'home',
         //: [AuthGuard],
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard, GuardModeradorComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/moderador/home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'consensos',
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard, GuardModeradorComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/moderador/consensos-moderador/consensos-moderador.module').then(m => m.ConsensosModeradorModule)
       },
       {
         path: 'nuevoconsenso',
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard, GuardModeradorComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/moderador/nuevo-consenso/nuevo-consenso.module').then(m => m.NuevoConsensoModule)
       },
       {
         path: 'configconsenso/:consensoId',
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard, GuardModeradorComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/moderador/configurar-consenso/configurar-consenso.module').then(m => m.ConfigurarConsensoModule)
       },
@@ -103,27 +107,27 @@ const routes: Routes = [
       {
         path: 'listaConsensos',
         component: ListaProcesosComponent,
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard, GuardParticipanteComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/participante/lista-procesos/lista-procesos.module').then(m => m.ListaProcesosModule)
       },
       {
         path: 'evaluacionProceso/:consensoId',
         component: EvaluacionProcesoComponent,
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard,GuardParticipanteComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/participante/evaluacion-proceso/evaluacion-proceso.module').then(m => m.EvaluacionProcesoModule)
       },
       {
         path: 'calificacionProceso/:rondaId',
         component: CalificacionProcesoComponent,
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard, GuardParticipanteComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/participante/calificacion-proceso/calificacion-proceso.module').then(m => m.CalificacionProcesoModule)
       },
       {
         path: 'resultados/:consensoId',
-        canActivate: [AngularFireAuthGuard],
+        canActivate: [AngularFireAuthGuard, GuardParticipanteComponent],
         data: { authGuardPipe: redirectUnauthorizedToLogin },
         loadChildren: () => import('./modules/participante/resultados/resultados.module').then(m => m.ResultadosModule)
       }

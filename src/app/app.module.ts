@@ -25,7 +25,9 @@ import { ApplayoutModComponent } from './layouts/applayout-mod/applayout-mod.com
 import { ApplayoutPartComponent } from './layouts/applayout-part/applayout-part.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ConfirmationDialogLogoutComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-
+import { GuardComponent } from './guards/guard.component';
+import { GuardParticipanteComponent } from './guards/guardParticipante.component';
+import { GuardModeradorComponent } from './guards/guardModerador.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +65,11 @@ import { ConfirmationDialogLogoutComponent } from './components/confirmation-dia
   entryComponents:[
     ConfirmationDialogLogoutComponent
   ],
-  providers: [],
+  providers: [
+    GuardComponent,
+    GuardParticipanteComponent,
+    GuardModeradorComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

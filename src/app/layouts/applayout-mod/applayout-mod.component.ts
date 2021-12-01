@@ -39,16 +39,7 @@ export class ApplayoutModComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.verificarRol();
-  }
-
-  private verificarRol(){
-    this._servicioUsuario._recuperarDataUsuario().then((res:any)=>{
-      if(res.rol!="moderador"){
-        this._servicioNotificaciones.error('No tiene permisos de moderador!');
-        this._servicioUsuario.logout(false);
-      }
-    })
+    //this.verificarRol();
   }
 
   logout() { 

@@ -30,7 +30,7 @@ export class ApplayoutPartComponent implements OnInit,OnDestroy, AfterViewInit  
   }
 
   ngAfterViewInit() {
-    this.verificarRol();
+    //this.verificarRol();
   }
 
   ngOnDestroy() {
@@ -43,15 +43,6 @@ export class ApplayoutPartComponent implements OnInit,OnDestroy, AfterViewInit  
 
   logout() {
     this._servicioUsuario.logout(true);
-  }
-
-  private verificarRol(){
-    this._servicioUsuario._recuperarDataUsuario().then((res:any)=>{
-      if(res.rol!="participante"){
-        this._servicioNotificaciones.error('No tiene permisos de participante!');
-        this._servicioUsuario.logout(false);
-      }
-    })
   }
 
   isLargeScreen() {

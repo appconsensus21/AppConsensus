@@ -32,16 +32,7 @@ export class ApplayoutAdminComponent implements OnInit, OnDestroy , AfterViewIni
   }
 
   ngAfterViewInit() {
-    this.verificarRol();
-  }
-
-  private verificarRol(){
-    this._servicioUsuario._recuperarDataUsuario().then((res:any)=>{
-      if(res.rol!="administrador"){
-        this._servicioNotificaciones.error('No tiene permisos de administrador!');
-        this._servicioUsuario.logout(false);
-      }
-    })
+    //this.verificarRol();
   }
 
   logout() {
