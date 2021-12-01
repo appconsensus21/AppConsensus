@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit , OnChanges{
   async ngOnInit() {
     await this.getUser();
     this.needupdatePass = await this.user.pswd !== '';
-    if(this.needupdatePass){
+    if(this.needupdatePass && this.user.rol == "moderador"){
       const toast = this._servicioNotificacion.warning('Presione este diálogo para cambiar la contraseña','Cambiar contraseña',{
         timeOut: 0,
         extendedTimeOut: 0,

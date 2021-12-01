@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -10,14 +11,14 @@ import { UsuarioService } from '../../services/usuario.service';
   templateUrl: './applayout-part.component.html',
   styleUrls: ['./applayout-part.component.css']
 })
-export class ApplayoutPartComponent implements OnInit {
+export class ApplayoutPartComponent implements OnInit,OnDestroy, AfterViewInit  {
   sideMenuItems: any;
   togglenavbar = false;
   username = '';
   public toggleFlag = false;
 
   constructor(private route: ActivatedRoute, private router: Router, public authService: AngularFireAuth,
-    private toastr: ToastrService,
+    private _servicioNotificaciones: ToastrService,
     private _servicioUsuario: UsuarioService
     ) {
 
@@ -29,8 +30,11 @@ export class ApplayoutPartComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    if (this.togglenavbar) {
-    }
+    this.verificarRol();
+  }
+
+  ngOnDestroy() {
+    this._servicioUsuario.unsubscribe();
   }
 
   openDropDown(){
@@ -38,7 +42,16 @@ export class ApplayoutPartComponent implements OnInit {
   }
 
   logout() {
-    this._servicioUsuario.logout();
+    this._servicioUsuario.logout(true);
+  }
+
+  private verificarRol(){
+    this._servicioUsuario._recuperarDataUsuario().then((res:any)=>{
+      if(res.rol!="participante"){
+        this._servicioNotificaciones.error('No tiene permisos de participante!');
+        this._servicioUsuario.logout(false);
+      }
+    })
   }
 
   isLargeScreen() {

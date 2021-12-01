@@ -58,7 +58,7 @@ export class ConfigurarConsensoComponent implements OnInit {
   public consenso: any;
 
 
-  public nivelalcanzado: any;
+  public nivelalcanzado=0;
   public validatorFinalizado: any;
   public data: any[] = []; //Charset Grafica
   public disableoptions = false;

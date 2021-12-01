@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { UsuarioService } from '../../services/usuario.service';
   templateUrl: './applayout-mod.component.html',
   styleUrls: ['./applayout-mod.component.css', '../applayout/applayout.component.css']
 })
-export class ApplayoutModComponent implements OnInit, OnDestroy  {
+export class ApplayoutModComponent implements OnInit, OnDestroy, AfterViewInit {
   sideMenuItems: any;
   togglenavbar = false;
   username = '';
@@ -21,12 +21,15 @@ export class ApplayoutModComponent implements OnInit, OnDestroy  {
   public sidenav!: MatSidenav;
   constructor(
     private route: ActivatedRoute, 
-    private router: Router, 
     public authService: AngularFireAuth,
-    private toastr: ToastrService,
-    private _servicioUsuario: UsuarioService
+    private _servicioUsuario: UsuarioService,
+    private _servicioNotificaciones: ToastrService
     ) {
 
+  }
+
+  ngOnDestroy(){
+    this._servicioUsuario.unsubscribe();
   }
 
   ngOnInit() {
@@ -35,17 +38,21 @@ export class ApplayoutModComponent implements OnInit, OnDestroy  {
     this.getCurrentUser();
   }
 
-  ngOnDestroy(){
-    this._servicioUsuario.unsubscribe();
-  }
-
   ngAfterViewInit() {
-    if (this.togglenavbar) {
-    }
+    this.verificarRol();
   }
 
-  logout() {
-    this._servicioUsuario.logout();
+  private verificarRol(){
+    this._servicioUsuario._recuperarDataUsuario().then((res:any)=>{
+      if(res.rol!="moderador"){
+        this._servicioNotificaciones.error('No tiene permisos de moderador!');
+        this._servicioUsuario.logout(false);
+      }
+    })
+  }
+
+  logout() { 
+    this._servicioUsuario.logout(true);
   }
 
   openDropDown(){

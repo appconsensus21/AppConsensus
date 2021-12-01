@@ -27,11 +27,13 @@ export class UsuarioService {
     firebase.firestore().enableNetwork();
   }
 
-  public logout(){
-    this._firebaseAuth.signOut().then(()=>{
+  public logout(mostrar: boolean){
+    this._firebaseAuth.signOut().finally(()=>{
+      if(mostrar){
+        this._servicioNotificacion.info('Sesión cerrada correctamente', '¡Hasta Luego!');
+      }
       this._router.navigate(['/login']);
-      this._servicioNotificacion.info('Sesión cerrada correctamente', '¡Hasta Luego!');
-    });
+    })
   }
   
   public async _crearUsuario(id: any, data: any) {

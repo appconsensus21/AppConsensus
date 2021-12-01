@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatSidenav } from '@angular/material/sidenav';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -12,33 +10,42 @@ import { UsuarioService } from '../../services/usuario.service';
   templateUrl: './applayout-admin.component.html',
   styleUrls: ['./applayout-admin.component.css', '../applayout/applayout.component.css']
 })
-export class ApplayoutAdminComponent implements OnInit {
+export class ApplayoutAdminComponent implements OnInit, OnDestroy , AfterViewInit {
   sideMenuItems: any;
   togglenavbar = false;
 
   @ViewChild('sidenav')
   public sidenav!: MatSidenav;
   constructor(
-    private route: ActivatedRoute,
     public authService: AngularFireAuth,
     private _servicioUsuario: UsuarioService,
-    private dialog: MatDialog
-    ) {
+    private _servicioNotificaciones: ToastrService,
+ ) {
 
   }
 
   ngOnInit() {
-    this.sideMenuItems = environment.menuItemsAdministrador;
-    this.togglenavbar = this.route.snapshot.data['navbar'];
+  }
+
+  ngOnDestroy(){
+    this._servicioUsuario.unsubscribe();
   }
 
   ngAfterViewInit() {
-    if (this.togglenavbar) {
-    }
+    this.verificarRol();
+  }
+
+  private verificarRol(){
+    this._servicioUsuario._recuperarDataUsuario().then((res:any)=>{
+      if(res.rol!="administrador"){
+        this._servicioNotificaciones.error('No tiene permisos de administrador!');
+        this._servicioUsuario.logout(false);
+      }
+    })
   }
 
   logout() {
-    this._servicioUsuario.logout();
+    this._servicioUsuario.logout(true);
   }
 
   isLargeScreen() {

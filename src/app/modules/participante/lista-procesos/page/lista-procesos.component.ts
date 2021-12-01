@@ -43,7 +43,7 @@ export class ListaProcesosComponent implements OnInit, AfterContentChecked {
     await this.getUser();
     await this.getListaProcesosByUser();
     this.actualizarPswd = await this.user.pswd !== '';
-    if (this.actualizarPswd) {
+    if (this.actualizarPswd && this.user.rol == "participante") {
       const toast = this._servicioNotificacion.warning('Presione este diálogo para cambiar la contraseña', 'Cambiar contraseña', {
         timeOut: 0,
         extendedTimeOut: 0,
