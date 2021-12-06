@@ -87,3 +87,10 @@ ng serve
 Es importante que el comando se ejecute en una consola de comandos con la ubicación de la carpeta principal del código fuente (mismo nivel que la carpeta src).
 
 2.	Se ingresa en un buscador web la dirección http://localhost:4200/. Y la aplicación se recargará automáticamente y se mostrará en la pantalla del buscador.
+
+
+## Instrucciones adicionales
+### Deploy de la aplicación en el hosting de Firebase
+
+Para subir la aplicación en el hosting de Firebase es necesario seguir los pasos que se indican en el siguiente [manual](https://github.com/appconsensus21/AppConsensus/blob/main/manuales/ManualDeployFirebaseHosting.pdf).
+
