@@ -39,7 +39,7 @@ exports.sendEmailCambioaModerador = functions.firestore.document('reportMail/{do
                 ${data.mensaje}
               </p>
               <p class="text-center" align="center">
-              <a target="_blank" href="${data.url}" style="border: none;
+              <a target="_blank" href="${APP_URL}" style="border: none;
               color: white;
               padding: 15px 32px;
               text-align: center;
@@ -55,7 +55,7 @@ exports.sendEmailCambioaModerador = functions.firestore.document('reportMail/{do
               <p>
                 Si no funciona, copie el siguiente link en su navegador:
               </p>
-              <p>${data.url}</p>
+              <p>${APP_URL}</p>
               <p>Saludos,</p>
               <p>App Consensus Team.</p>
             </div>

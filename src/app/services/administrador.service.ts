@@ -57,7 +57,7 @@ export class AdministradorService {
             if (usuario[0] != undefined) {
               this._cambiarARolModerador(usuario[0].uid).then(async () => {
                 const newModerador = {
-                  url: 'https://integradora-proyect-df8b7.web.app',
+                  url: '',
                   email,
                   mensaje: `Estimado(a) ${nombres} ${apellidos}, ha sido designado como moderador en App Consensus.`
                 }
