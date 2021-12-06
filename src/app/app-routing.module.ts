@@ -12,7 +12,7 @@ import { GuardModeradorComponent } from './guards/guardModerador.component';
 import { GuardParticipanteComponent } from './guards/guardParticipante.component';
 
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },

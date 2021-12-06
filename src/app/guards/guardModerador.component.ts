@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 export class GuardModeradorComponent implements OnInit,CanActivate {
 
   public isModerador = false;
+  public isAdmin = false;
+  public isParcipante = false;
   constructor(private _router: Router,
     private _servicioUsuario: UsuarioService,
     private _servicioNotificaciones: ToastrService
@@ -19,6 +21,12 @@ export class GuardModeradorComponent implements OnInit,CanActivate {
       if(res.rol=="moderador"){
         this.isModerador = true;
       }
+      if(res.rol=="administrador"){
+        this.isAdmin = true;
+      }
+      if(res.rol=="participante"){
+        this.isParcipante = true;
+      }
     })
   }
   
@@ -26,7 +34,13 @@ export class GuardModeradorComponent implements OnInit,CanActivate {
     await this.ngOnInit();
     if (!this.isModerador) {
       this._servicioNotificaciones.error("No tiene permisos de moderador!");
-      this._router.navigate(['login']);
+      //this._router.navigate(['login']);
+      if(this.isAdmin){
+        this._router.navigate(['appAdmin/home']);
+      }
+      if(this.isParcipante){
+        this._router.navigate(['appParticipante/listaConsensos']);
+      }
     }
     return this.isModerador;
   }

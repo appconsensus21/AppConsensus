@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { CanActivate, CanActivateChild } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { Router } from '@angular/router'; 
 import { UsuarioService } from '../services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 export class GuardComponent implements OnInit,CanActivate {
 
   public isAdmin = false;
+  public isModerador = false;
+  public isParcipante = false;
   constructor(private _router: Router,
     private _servicioUsuario: UsuarioService,
     private _servicioNotificaciones: ToastrService
@@ -19,6 +21,13 @@ export class GuardComponent implements OnInit,CanActivate {
       if(res.rol=="administrador"){
         this.isAdmin = true;
       }
+      if(res.rol=="moderador"){
+        this.isModerador = true;
+      }
+      if(res.rol=="participante"){
+        this.isParcipante = true;
+      }
+
     })
   }
   
@@ -26,7 +35,12 @@ export class GuardComponent implements OnInit,CanActivate {
     await this.ngOnInit();
     if (!this.isAdmin) {
       this._servicioNotificaciones.error("No tiene permisos de administrador!");
-      this._router.navigate(['login']);
+      if(this.isModerador){
+        this._router.navigate(['appModerador/home']);
+      }
+      if(this.isParcipante){
+        this._router.navigate(['appParticipante/listaConsensos']);
+      }
     }
     return this.isAdmin;
   }
