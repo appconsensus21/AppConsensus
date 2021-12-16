@@ -22,7 +22,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Contraseña</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-          <button mat-icon-button matSuffix (click)="hide = !hide">
+          <button  type="button" mat-icon-button matSuffix (click)="hide = !hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error *ngIf="formRegistro.invalid">{{getErrorMessage()}}</mat-error>
@@ -30,7 +30,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Confirmar contraseña</mat-label>
           <input matInput [type]="hideconfirm ? 'password' : 'text'" formControlName="confirmPassword" required>
-          <button mat-icon-button matSuffix (click)="hideconfirm = !hideconfirm">
+          <button  type="button" mat-icon-button matSuffix (click)="hideconfirm = !hideconfirm">
             <mat-icon>{{hideconfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error *ngIf="formRegistro.invalid">{{getErrorMessage()}}</mat-error>
